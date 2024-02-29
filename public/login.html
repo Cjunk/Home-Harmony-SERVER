@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            /*width: 100%;*/
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="loginForm"  method="POST">
+        <h2>Login</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required /><br />
+
+        <label for="password">Password:</label>
+        <input autocomplete="off" type="password" id="password" name="password" required /><br />
+
+        <input type="submit" value="Login" />
+    </form>
+
+    <script>
+        window.onload = function() {
+            var environmentURL = `${process.env.REACT_APP_EXPRESS_SERVER_URL}/login`;
+            document.getElementById('loginForm').action = environmentURL
+            var urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('login') && urlParams.get('login') === 'failed') {
+                alert('Invalid username or password');
+                window.history.pushState({}, document.title, window.location.pathname);
+            }
+        };
+
+    </script>
+</body>
+</html>
+

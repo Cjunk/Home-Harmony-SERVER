@@ -1,0 +1,18 @@
+const { Cloudinary } = require("@cloudinary/url-gen");
+const cloudinary = require('cloudinary').v2; // Use CommonJS syntax to import the v2 object
+cloudinary.config({
+    cloud_name: 'dc7oti3kw',
+    api_key: '983499594215616',
+    api_secret: 'Z-EsHRo7dEY_TWMpyjUynO8Lg8Q'
+});
+const App = () => {
+    const cld = new Cloudinary({ cloud: { cloudName: 'dc7oti3kw' } });
+    const filename = "Pliers"
+    cloudinary.uploader.upload(`C:/Users/User/Dropbox/INVENTORY PHOTOS/${filename}.jpg`,
+        {
+            folder: "HOME_HARMONY", // Specify the folder path,
+            public_id: `${filename}`
+        },
+    function (error, result) { console.log(result); });
+};
+App()
