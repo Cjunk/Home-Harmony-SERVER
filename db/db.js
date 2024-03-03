@@ -7,7 +7,8 @@ const mysql = require('mysql')
 require('dotenv').config();
 
 // Create the connection 
-const db = mysql.createConnection({
+// console.log("-----", process.env.DB_HOST);
+const db = mysql.createConnection({   
     connectionLimit: 5,             // Adjust this value as needed 2 connections 1 for the app and 1 for express.sessions
     host: process.env.DB_HOST,      // Replace with correct host ip
     user: process.env.DB_USER,
